@@ -6,29 +6,34 @@ const chainMaker = {
   getLength() {
     return this.chain.length;
     },
+
   addLink(value) {
     if (value === 'undefined'){
       this.chain.push('( )');
     } else{
-      this.chain.push('(' + value + ')~~');
+      this.chain.push(String(value));
     }
       return this;
   },
+
   removeLink(position) {
-    if(position > this.chain.length || position !== 'number'){
-      this.chain = [];
-      throw new CustomError('Not implemented');;
-    }else {
+    if(position >= 0 && position <= this.chain.length - 1 || Number.isInteger(position)){
     this.chain.splice(position-1, 1);
-    }
+    } else {
+      this.chain = [];
+      throw new Error;
+    } 
     return this;
   },
+
   reverseChain() {
     this.chain.reverse();
     return this;
   },
+
   finishChain() {
-    let chain = this.chain;
+    let chain = this.chain.join(' )~~( ');
+    chain = '( ' + chain + ' )';
     this.chain = [];
     return chain;
    }
