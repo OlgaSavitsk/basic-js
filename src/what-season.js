@@ -1,14 +1,14 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function getSeason(date) {
-  if(Object.prototype.toString.call(date) !== '[object Date]'){
-    throw new CustomError('Not implemented');
-  }else
-  if(date === undefined){
-    return ('Unable to determine the time of year!')
-  } else
+  if(date == null){
+    return 'Unable to determine the time of year!'
+  }
+  if(Object.prototype.toString.call(date) !== '[object Date]' || +date == undefined){
+    throw new Error;
+  }
     if(typeof date === 'string'){
-      return (`Error`)
+      return `Error`
   }
   
   month = date.getMonth();
@@ -30,6 +30,6 @@ module.exports = function getSeason(date) {
         case 10:
           return ('autumn');
         default:
-    return ('fall')
+    return;
   }
 };
