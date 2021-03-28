@@ -2,13 +2,11 @@ const CustomError = require("../extensions/custom-error");
 
 module.exports = function repeater(str, options) {
   addition = String(options.addition);
-  const repeatTimes = options.repeatTimes || 1;
-  const separator = options.separator || '+';
-  const additionRepeatTimes = options.additionRepeatTimes || 1;
-  const additionSeparator = options.additionSeparator || '|';
+  let additionSeparator = options.additionSeparator || '|';
+  let additionRepeatTimes = options.additionRepeatTimes;
+  let separator = options.separator || '+';
+  let repeatTimes = options.repeatTimes;
   if(options.addition === undefined) addition = '';
-  if (options.separator == undefined) options.separator = '+';
-  if (options.additionSeparator == undefined) options.additionSeparator = '|';
 return  (((String(str) + ((addition + String(additionSeparator)).repeat(String(additionRepeatTimes - 1)) + addition)) + String(separator)).repeat(repeatTimes - 1)) + (String(str) + ((addition + String(additionSeparator)).repeat(String(additionRepeatTimes - 1)) + addition));
 
 };
